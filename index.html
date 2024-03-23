@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Popper.js with Tailwind CSS</title>
+    <!-- Tailwind CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <!-- Popper.js -->
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+  </head>
+
+  <body class="bg-gray-100 h-screen flex items-center justify-center">
+    <div class="p-8 bg-white rounded-lg shadow-md">
+      <button
+        id="tooltipButton"
+        class="relative px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600"
+      >
+        Hover Me
+      </button>
+      <div
+        id="tooltipContent"
+        class="hidden bg-yellow-200 p-2 mt-2 rounded-lg shadow-md"
+      >
+        This is a tooltip example using Popper.js.
+      </div>
+    </div>
+
+    <script>
+      // Initialize Popper.js for tooltip
+      // Initialize Popper.js for tooltip
+      const button = document.getElementById("tooltipButton");
+      const tooltip = document.getElementById("tooltipContent");
+      const popperInstance = Popper.createPopper(button, tooltip, {
+        placement: "bottom",
+        modifiers: [
+          {
+            name: "offset",
+            options: {
+              offset: [0, 10],
+            },
+          },
+        ],
+      });
+      // Show tooltip on button hover
+      button.addEventListener("mouseenter", function () {
+        tooltip.classList.remove("hidden");
+        popperInstance.update();
+      });
+
+      // Hide tooltip on button mouseleave
+      button.addEventListener("mouseleave", function () {
+        tooltip.classList.add("hidden");
+      });
+    </script>
+  </body>
+</html>
+
